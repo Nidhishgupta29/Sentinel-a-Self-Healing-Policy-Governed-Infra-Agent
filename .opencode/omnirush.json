@@ -6,7 +6,7 @@
     "preset": "starter"
   },
   "authorizedRoots": [
-    "C:\\Users\\Dell\\omnirush.ai"
+    "."
   ],
   "reload": null
 }

@@ -42,3 +42,20 @@ def test_render_blueprint_targets_dashboard_and_bundles_history():
     assert "dashboard.app:app" in dockerfile
     assert "--host 0.0.0.0" in dockerfile
     assert "${PORT:-8000}" in dockerfile
+
+
+def test_runtime_metadata_and_requirements_are_portable_and_pinned():
+    assert (PROJECT_ROOT / ".python-version").read_text(encoding="utf-8").strip() == "3.12"
+
+    env_example = (PROJECT_ROOT / ".env.example").read_text(encoding="utf-8")
+    assert "SENTINEL_DB_PATH=" in env_example
+    assert "PORT=" in env_example
+
+    requirements = (PROJECT_ROOT / "requirements.txt").read_text(encoding="utf-8")
+    requirement_lines = [
+        line.strip()
+        for line in requirements.splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    ]
+    assert requirement_lines
+    assert all("==" in line and ">=" not in line and "<=" not in line for line in requirement_lines)
