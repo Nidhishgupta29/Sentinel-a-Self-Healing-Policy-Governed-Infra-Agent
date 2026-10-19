@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: sentinel-dashboard
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    autoDeploy: true

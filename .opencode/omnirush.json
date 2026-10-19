@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "workspace": {
+    "name": "omnirush.ai",
+    "createdAt": 1792345237291,
+    "preset": "starter"
+  },
+  "authorizedRoots": [
+    "C:\\Users\\Dell\\omnirush.ai"
+  ],
+  "reload": null
+}

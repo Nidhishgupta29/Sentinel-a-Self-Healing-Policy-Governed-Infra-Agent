@@ -1,0 +1,22 @@
+# Patch guardrails for the single-fault repair loop.
+allowed_paths:
+  - "faults/*.py"
+  - "demo_app/*.py"
+
+denied_paths:
+  - ".env"
+  - "**/.env"
+  - ".env.*"
+  - "**/.env.*"
+  - "policy.yaml"
+  - "**/policy.yaml"
+
+denied_content_patterns:
+  - name: destructive_shell_command
+    regex: '(?i)\brm\b'
+  - name: destructive_database_command
+    regex: '(?i)\bdrop\s+table\b'
+  - name: network_url
+    regex: '(?i)\bhttps?://'
+  - name: network_client_or_command
+    regex: '(?i)\b(?:curl|wget|requests|urllib(?:\.request)?|httpx|socket)\s*(?:\.|\()'
